@@ -5,13 +5,15 @@ import { NavLink } from 'react-router-dom'
 import './Header.css'
 
 const navigation = [
-  { number: '1.', name: 'Projects', href: '/projects' },
+  { number: '1.', name: 'Projects', href: '/projects', external: false },
   {
     number: '2.',
     name: 'Blogs',
     href: 'https://medium.com/@grant.tyler.harrison',
+    external: true,
   },
-  { number: '3.', name: 'Resume', href: '/resume' },
+  { number: '3.', name: 'Resume', href: '/resume', external: false },
+  { number: '4.', name: 'Calculator', href: '/calculator', external: false },
 ]
 
 const Header = () => {
@@ -153,18 +155,29 @@ const Header = () => {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <NavLink to={item.href}>
+          {navigation.map((item) =>
+            item.external ? (
               <a
                 key={item.name}
                 href={item.href}
+                target="_blank"
+                rel="noreferrer"
                 className="text-sm font-semibold leading-6 text-gray-200"
               >
                 <span className="number-list">{item.number}</span>
                 {' ' + item.name}
               </a>
-            </NavLink>
-          ))}
+            ) : (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className="text-sm font-semibold leading-6 text-gray-200"
+              >
+                <span className="number-list">{item.number}</span>
+                {' ' + item.name}
+              </NavLink>
+            ),
+          )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end"></div>
       </nav>
@@ -306,15 +319,28 @@ const Header = () => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-200/10">
               <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-200 hover:bg-gray-800"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {navigation.map((item) =>
+                  item.external ? (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-200 hover:bg-gray-800"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <NavLink
+                      key={item.name}
+                      to={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-200 hover:bg-gray-800"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </NavLink>
+                  ),
+                )}
               </div>
             </div>
           </div>

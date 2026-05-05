@@ -1,0 +1,48 @@
+.calculator-shell {
+  border-radius: 8px;
+}
+
+.calculator-display {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+}
+
+.calculator-button {
+  min-height: 3.5rem;
+  border-radius: 8px;
+  background: rgba(51, 65, 85, 0.95);
+  color: rgb(243, 244, 246);
+  font-weight: 700;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.calculator-button:hover {
+  background: rgba(71, 85, 105, 0.95);
+}
+
+.calculator-button:focus-visible {
+  outline: 2px solid #50c878;
+  outline-offset: 2px;
+}
+
+.calculator-button:active {
+  transform: translateY(1px);
+}
+
+.calculator-button-secondary {
+  background: rgba(15, 23, 42, 0.95);
+  color: rgb(191, 219, 254);
+}
+
+.calculator-button-operator {
+  background: rgba(29, 78, 216, 0.9);
+}
+
+.calculator-button-equals {
+  background: #50c878;
+  color: rgb(15, 23, 42);
+}
